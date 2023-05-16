@@ -1,0 +1,33 @@
+.search-bar {
+  display: flex;
+  background-color: white;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.5rem;
+  height: fit-content;
+  flex: 2;
+  min-width: 280px;
+  max-width: 600px;
+  gap: 0.4rem;
+}
+.search-input {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  flex-grow: 1;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 0px;
+  border-right: 1px solid var(--main-nav-background-color);
+}
+.search-submit {
+  border: none;
+  background-color: inherit;
+  color: #272727;
+}
+@media screen and (max-width: 600px) {
+  .search-bar {
+    min-width: auto;
+  }
+}

@@ -1,0 +1,75 @@
+nav.main-nav {
+  padding: 1rem 2rem;
+  background-color: var(--main-nav-background-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+ul.main-nav__links {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.main-nav__link {
+  text-decoration: none;
+  margin: 0.2rem 0.4rem 0rem;
+  color: var(--main-link-color);
+  font-size: 1.6rem;
+  position: relative;
+}
+.main-nav__link:hover {
+  border-bottom: 2px solid gainsboro;
+}
+.cart-badge {
+  background-color: transparent;
+  border: 1px solid var(--main-link-color);
+  position: relative;
+  z-index: 0;
+}
+.cart-count {
+  background-color: rgb(235, 196, 97);
+  color: var(--main-nav-background-color);
+  border-radius: 50%;
+  height: 1.4rem;
+  min-width: 1.4rem;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  left: 80%;
+  top: 0;
+  padding: 0.2rem;
+  z-index: 5;
+}
+.cart {
+  position: relative;
+  padding: 1rem;
+}
+.user-interactions {
+  display: flex;
+}
+.user-interactions > * {
+  padding: 1rem 0.5rem;
+  color: white;
+  display: block;
+}
+.logo > img {
+  width: 150px;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 640px) {
+  nav.main-nav {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,69 @@
+.authentication-form {
+  color: var(--secondary-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  background: linear-gradient(
+    131deg,
+    rgba(105, 88, 204, 1) 45%,
+    rgba(173, 0, 203, 1) 81%
+  );
+  box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.3);
+  padding: 3rem 2rem;
+  border-radius: 0.8rem;
+}
+.login-form_wrapper,
+.register-form__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  min-width: 340px;
+}
+.submit-btn {
+  padding: 0.4rem 1rem;
+  margin-top: 1.5rem;
+  width: 80%;
+  border-radius: 1rem;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 100;
+  border: none;
+}
+.input-wrapper {
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 0.4rem;
+  width: 100%;
+}
+.auth-input {
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+}
+.auth-input::placeholder {
+  color: var(--secondary-text-color);
+  font-weight: 100;
+}
+.auth-input:focus {
+  outline: none;
+}
+.auth-label {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+}
+.input-wrapper {
+  gap: 0.5rem;
+  display: flex;
+  width: 100%;
+}
+.error-message {
+  margin: 0.2rem 0rem;
+  width: 100%;
+  font-weight: bold;
+  max-width: 250px;
+  text-align: center;
+  text-decoration: underline;
+}

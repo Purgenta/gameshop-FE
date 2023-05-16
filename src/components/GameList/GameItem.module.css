@@ -1,0 +1,31 @@
+.img-wrapper > img {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1 / 1.5;
+  max-width: 350px;
+}
+.img-wrapper {
+  margin: 0rem auto;
+  text-align: center;
+}
+.information {
+  margin: 2rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 0.5rem;
+}
+.title {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+.price {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.cart {
+  border-radius: 50%;
+  background-color: #ffdf00;
+  padding: 1rem;
+  border: none;
+}
