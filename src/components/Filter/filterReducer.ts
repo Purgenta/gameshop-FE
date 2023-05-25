@@ -1,52 +1,45 @@
 import { useReducer } from "react";
 export type FilterValues = {
-  price: {
-    minPrice: number;
-    maxPrice: number;
-  };
-  year: {
-    minYear: number;
-    maxYear: number;
-  };
-  categories?: string[];
+  fromPrice: number;
+  toPrice: number;
+  fromYear: number;
+  toYear: number;
+  categories: string[];
 };
 const initialState: FilterValues = {
-  price: {
-    minPrice: 1,
-    maxPrice: 100000,
-  },
-  year: {
-    minYear: 1950,
-    maxYear: new Date().getFullYear(),
-  },
+  fromPrice: 1,
+  toPrice: 100000,
+  fromYear: 1950,
+  toYear: new Date().getFullYear(),
+  categories: [],
 };
 type ACTIONTYPE =
   | {
       type: "setPrice";
       payload: {
-        minPrice: number;
-        maxPrice: number;
+        fromPrice: number;
+        toPrice: number;
       };
     }
   | { type: "setCategories"; payload: string[] }
-  | { type: "setYear"; payload: { minYear: number; maxYear: number } };
+  | { type: "setYear"; payload: { fromYear: number; toYear: number } };
 function reducer(
   state: typeof initialState,
   action: ACTIONTYPE
 ): typeof initialState {
   switch (action.type) {
     case "setPrice": {
-      return { ...state, price: action.payload };
+      return { ...state, ...action.payload };
     }
     case "setCategories": {
       const newState = { ...state };
       if (action.payload.length) {
         newState.categories = action.payload;
-      } else delete newState["categories"];
+      } else newState.categories = [];
       return newState;
     }
     case "setYear": {
-      return { ...state, year: action.payload };
+      return { ...state, ...action.payload };
     }
     default:
       throw new Error();

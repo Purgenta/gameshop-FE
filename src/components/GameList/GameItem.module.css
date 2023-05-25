@@ -1,6 +1,6 @@
 .img-wrapper > img {
   object-fit: cover;
-  width: 100%;
+  width: auto;
   aspect-ratio: 1 / 1.5;
   max-width: 350px;
 }

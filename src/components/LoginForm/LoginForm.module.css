@@ -30,7 +30,7 @@
   font-size: 1.2rem;
   font-weight: 100;
   border: none;
-  background-color: var(--secondary-button-color);
+  background-color: var(--main-button-color);
 }
 .input-wrapper {
   border-bottom: 1px solid gainsboro;

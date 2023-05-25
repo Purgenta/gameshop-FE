@@ -1,6 +1,6 @@
 import { Game } from "@/types/game";
 import GameItem from "./GameItem";
-import style from "./GamesList.module.css";
+import style from "./GameList.module.css";
 type GamesListProps = {
   games: Game[];
 };

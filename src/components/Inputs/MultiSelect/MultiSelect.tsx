@@ -6,7 +6,6 @@ interface MultiSelectProps {
   values?: string[];
   changeHandler: (selectedOptions: string[]) => unknown;
 }
-type MultiSelectGeneric = string | number;
 function MultiSelect({ options, changeHandler, values }: MultiSelectProps) {
   const [selected, setSelected] = useState(new Set<string>());
   useEffect(() => {
@@ -20,9 +19,9 @@ function MultiSelect({ options, changeHandler, values }: MultiSelectProps) {
             onChange={(event) => {
               const value = event.target.value;
               setSelected((prev) => {
-                if (prev.has(event.target.value)) {
-                  prev.delete(event.target.value);
-                } else prev.add(event.target.value);
+                if (prev.has(value)) {
+                  prev.delete(value);
+                } else prev.add(value);
                 return new Set<string>([...prev]);
               });
             }}

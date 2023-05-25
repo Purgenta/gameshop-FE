@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { useState, useRef, useEffect } from "react";
 import { memo } from "react";
 import style from "./RangeSlider.module.css";
@@ -71,12 +72,12 @@ const RangeSlider = memo(
           <div className={style["out-range"]} />
         </div>
         <div className={style["price"]}>
-          <h3
-            className={style["price-lower"]}
-          >{`${range.lower} ${labelLower}`}</h3>
-          <h3
-            className={style["price-higher"]}
-          >{`${range.upper} ${labelUpper}`}</h3>
+          <h3 className={style["price-lower"]}>{`${range.lower} ${
+            labelLower ? labelLower : ""
+          }`}</h3>
+          <h3 className={style["price-higher"]}>{`${range.upper} ${
+            labelUpper ? labelUpper : ""
+          }`}</h3>
         </div>
       </div>
     );

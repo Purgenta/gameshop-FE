@@ -4,23 +4,21 @@ import style from "./page.module.css";
 import LoginForm, { FormValues } from "@/components/LoginForm/LoginForm";
 import { loginRequest } from "@/requests/user/userRequests";
 import { useDispatch } from "react-redux";
-import { updateAuthState } from "@/redux/authSlice/authSlice";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const sendLoginRequest = async (values: FormValues) => {
     try {
-      const response = await loginRequest(values);
-      dispatch(
-        updateAuthState({
-          isAuth: true,
-          accessToken: response!.accessToken,
-          role: response!.role,
-        })
-      );
+      await signIn("credentials", {
+        username: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl: "/profile",
+      });
       dispatch(
         addNotification({
           id: nanoid(5),
@@ -28,7 +26,6 @@ const Page = () => {
           notificationType: "SUCCESS",
         })
       );
-      router.push("/");
     } catch (error) {
       dispatch(
         addNotification({

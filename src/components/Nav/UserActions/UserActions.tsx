@@ -2,12 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./UserActions.module.css";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { authSelector } from "@/redux/authSlice/authSlice";
-import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 const UserActions = () => {
   const [active, setActive] = useState(false);
-  const { isAuth, role } = useSelector(authSelector);
+  const { data } = useSession();
+  const role = data ? data.user.role : "";
+  const isAuth = data?.user.role ? true : false;
   const onHover = () => setActive((prev) => !prev);
   return (
     <button
@@ -31,7 +32,7 @@ const UserActions = () => {
             <li>
               <Link href={"/logout"}>Logout</Link>
             </li>
-            {role == "ADMIN" && (
+            {role == "ROLE_ADMIN" && (
               <li>
                 <Link href={"/admin"}>Admin dashboard</Link>
               </li>

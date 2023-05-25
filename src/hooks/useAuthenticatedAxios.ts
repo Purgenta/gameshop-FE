@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { authenticatedAxios } from "@/requests/axios/axios";
-import { authSelector } from "@/redux/authSlice/authSlice";
-import { useSelector } from "react-redux";
 import useRefreshToken from "./useRefreshToken";
-import { useRouter } from "next/router";
-const useAuthenticetedAxios = () => {
-  const authentication = useSelector(authSelector);
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { addNotification } from "@/redux/notificationSlice/notificationSlice";
+import { nanoid } from "@reduxjs/toolkit";
+const useAuthenticatedAxios = () => {
   const refreshToken = useRefreshToken();
+  const { data: authentication } = useSession();
+  const dispatch = useDispatch();
   const navigate = useRouter();
   useEffect(() => {
     const requestInterceptor = authenticatedAxios.interceptors.request.use(
@@ -14,7 +17,7 @@ const useAuthenticetedAxios = () => {
         if (!config?.headers["Authorization"]) {
           config.headers[
             "Authorization"
-          ] = `Bearer ${authentication.accessToken}`;
+          ] = `Bearer ${authentication?.user.accessToken}`;
         }
         return config;
       },
@@ -33,6 +36,17 @@ const useAuthenticetedAxios = () => {
             previousRequest.headers["Authorization"] = `Bearer ${accessToken}`;
             return authenticatedAxios(previousRequest);
           } catch (exception) {
+            if (authentication) {
+              authentication.user.accessToken = "";
+              authentication.user.role = "";
+            }
+            dispatch(
+              addNotification({
+                id: nanoid(5),
+                message: "Your session has expired",
+                notificationType: "ERROR",
+              })
+            );
             navigate.push("/login");
           }
         }
@@ -43,7 +57,7 @@ const useAuthenticetedAxios = () => {
       authenticatedAxios.interceptors.response.eject(responseInterceptor);
       authenticatedAxios.interceptors.request.eject(requestInterceptor);
     };
-  }, [authentication, refreshToken, navigate]);
+  }, [authentication, refreshToken, navigate, dispatch]);
   return authenticatedAxios;
 };
-export default useAuthenticetedAxios;
+export default useAuthenticatedAxios;

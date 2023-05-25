@@ -1,11 +1,11 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice/authSlice";
+import cartSlice from "./cartSlice/cartSlice";
 import notificationSlice from "./notificationSlice/notificationSlice";
 const store = configureStore({
   reducer: {
-    authentication: authSlice,
     notifications: notificationSlice,
+    cart: cartSlice,
   },
 });
 export default store;

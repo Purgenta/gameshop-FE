@@ -1,9 +1,10 @@
 .games-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 300px));
   list-style-type: none;
   gap: 1.5rem;
   align-items: center;
+  justify-content: center;
 }
 .item {
   border-radius: 0.5rem;

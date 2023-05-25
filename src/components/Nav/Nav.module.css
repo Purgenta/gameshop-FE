@@ -2,19 +2,18 @@ nav.main-nav {
   padding: 1rem 2rem;
   background-color: var(--main-nav-background-color);
   color: white;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
   align-items: center;
   gap: 1rem;
-  max-width: 1000px;
-  flex-wrap: wrap;
+  max-width: 1200px;
   width: 100%;
 }
 ul.main-nav__links {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 .main-nav__link {
@@ -37,7 +36,6 @@ ul.main-nav__links {
   background-color: rgb(235, 196, 97);
   color: var(--main-nav-background-color);
   border-radius: 50%;
-  height: 1.4rem;
   min-width: 1.4rem;
   text-align: center;
   display: inline-block;
@@ -60,7 +58,7 @@ ul.main-nav__links {
   display: block;
 }
 .logo > img {
-  width: 150px;
+  max-width: 150px;
 }
 .navigation {
   display: flex;

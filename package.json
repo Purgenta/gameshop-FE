@@ -18,15 +18,21 @@
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "axios": "^1.4.0",
+    "cookies": "^0.8.0",
+    "cookies-next": "^2.1.1",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
     "formik": "^2.2.9",
     "framer-motion": "^10.12.9",
-    "next": "13.4.1",
+    "next": "^13.4.2",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "swr": "^2.1.5",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/cookies": "^0.7.7"
   }
 }
