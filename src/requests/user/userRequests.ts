@@ -1,6 +1,6 @@
 import axios from "../axios/axios";
 import { AUTHENDPOINTS } from "../APIENDPOINTS";
-import { FormValues } from "@/components/LoginForm/LoginForm";
+import { FormValues } from "@/components/Forms/LoginForm/LoginForm";
 import { Role } from "@/types/role";
 type AuthResponse = {
   accessToken: string;

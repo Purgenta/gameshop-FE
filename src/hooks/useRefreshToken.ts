@@ -9,7 +9,9 @@ type AuthResponse = {
 const useRefreshToken = () => {
   const { data: session } = useSession();
   const getAccessToken = async () => {
-    const response = await axios.get(AUTHENDPOINTS.refreshToken);
+    const response = await axios.get(AUTHENDPOINTS.refreshToken, {
+      headers: { Authorization: `Bearer ${session?.user.refreshToken}` },
+    });
     const { accessToken, role } = response.data as AuthResponse;
     if (session) {
       session.user.accessToken = accessToken;

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import style from "./page.module.css";
-import LoginForm, { FormValues } from "@/components/LoginForm/LoginForm";
+import LoginForm, { FormValues } from "@/components/Forms/LoginForm/LoginForm";
 import { loginRequest } from "@/requests/user/userRequests";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";

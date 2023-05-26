@@ -20,12 +20,11 @@ const nextAuthOptions: NextAuthOptionsCallback = (
           username: { label: "Username", type: "text", placeholder: "jsmith" },
           password: { label: "Password", type: "password" },
         },
-        async authorize(credentials, req) {
+        async authorize(credentials) {
           const response = await axios.post(
             "http://localhost:8080/authentication/login",
             { email: credentials?.username, password: credentials?.password },
             {
-              withCredentials: true,
               headers: { "Content-Type": "application/json" },
             }
           );
