@@ -1,9 +1,13 @@
+"use client";
 import ContextProvider from "@/redux/ContextProvider/ContextProvider";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import Notifications from "@/components/Notifications/Notifications";
-import Nav from "@/components/Nav/Nav";
 import Provider from "./Provider";
+import { ChakraProvider } from "@chakra-ui/react";
+import SidebarWithHeader from "@/components/Layout/Layout";
+import Wrapper from "./Wrapper";
+import { SWRConfig } from "swr";
 export const metadata = {
   title: "Gameshop",
   description: "An e-commerce solution for selling video games",
@@ -16,23 +20,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Provider>
+      <body>
         <ContextProvider>
-          <body>
-            {
-              <>
-                <header id="main-header">
-                  <Nav />
-                </header>
-
-                <Notifications />
-                {children}
-                <Footer />
-              </>
-            }
-          </body>
+          <Provider>
+            <Wrapper>
+              <ChakraProvider>
+                <SWRConfig value={{ errorRetryInterval: 1000 }}>
+                  <SidebarWithHeader>
+                    <Notifications />
+                    {children}
+                  </SidebarWithHeader>
+                </SWRConfig>
+              </ChakraProvider>
+              <Footer />
+            </Wrapper>
+          </Provider>
         </ContextProvider>
-      </Provider>
+      </body>
     </html>
   );
 }

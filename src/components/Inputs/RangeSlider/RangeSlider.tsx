@@ -7,11 +7,21 @@ type RangeSliderProps = {
   labelUpper?: string;
   labelLower?: string;
   upper: number;
+  minLower: number;
+  maxUpper: number;
   symbol?: JSX.Element;
   onChange: (lower: number, upper: number) => unknown;
 };
 const RangeSlider = memo(
-  ({ lower, upper, labelLower, labelUpper, onChange }: RangeSliderProps) => {
+  ({
+    lower,
+    upper,
+    labelLower,
+    labelUpper,
+    minLower,
+    maxUpper,
+    onChange,
+  }: RangeSliderProps) => {
     const [range, setRange] = useState({
       lower,
       upper,
@@ -39,13 +49,15 @@ const RangeSlider = memo(
         };
       });
     };
-    const rangeWidth = (range.upper - range.lower) / (upper - lower);
-    const leftOffSet = 100 - ((upper - range.lower) / (upper - lower)) * 100;
+    const rangeWidth = (range.upper - range.lower) / (maxUpper - minLower);
+    console.log(rangeWidth);
+    const leftOffSet =
+      100 - ((maxUpper - range.lower) / (maxUpper - minLower)) * 100;
     return (
       <div className={style["range-wrapper"]}>
         <div className={style["ranges"]}>
           <input
-            min={lower}
+            min={minLower}
             max={range.upper}
             ref={lowerRef}
             value={range.lower}
@@ -54,7 +66,7 @@ const RangeSlider = memo(
             type={"range"}
           />
           <input
-            max={upper}
+            max={maxUpper}
             min={range.lower}
             value={range.upper}
             ref={upperRef}
@@ -72,10 +84,10 @@ const RangeSlider = memo(
           <div className={style["out-range"]} />
         </div>
         <div className={style["price"]}>
-          <h3 className={style["price-lower"]}>{`${range.lower} ${
+          <h3 className={style["price-lower"]}>{`${minLower} ${
             labelLower ? labelLower : ""
           }`}</h3>
-          <h3 className={style["price-higher"]}>{`${range.upper} ${
+          <h3 className={style["price-higher"]}>{`${maxUpper} ${
             labelUpper ? labelUpper : ""
           }`}</h3>
         </div>

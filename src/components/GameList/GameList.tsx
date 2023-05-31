@@ -1,6 +1,7 @@
 import { Game } from "@/types/game";
 import GameItem from "./GameItem";
 import style from "./GameList.module.css";
+import placeholder from "../../../public/jk-placeholder-image.jpg";
 type GamesListProps = {
   games: Game[];
 };

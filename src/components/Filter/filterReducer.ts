@@ -5,6 +5,7 @@ export type FilterValues = {
   fromYear: number;
   toYear: number;
   categories: string[];
+  sort: string[];
 };
 const initialState: FilterValues = {
   fromPrice: 1,
@@ -12,6 +13,7 @@ const initialState: FilterValues = {
   fromYear: 1950,
   toYear: new Date().getFullYear(),
   categories: [],
+  sort: ["price", "desc"],
 };
 type ACTIONTYPE =
   | {
@@ -45,7 +47,28 @@ function reducer(
       throw new Error();
   }
 }
-const useFilterReducer = () => {
-  return useReducer(reducer, initialState);
+type OptionalInit = {
+  fromPrice?: number;
+  toPrice?: number;
+  fromYear?: number;
+  toYear?: number;
+  categories?: string[];
+  sort?: string[];
+};
+const useFilterReducer = (initState: OptionalInit | undefined) => {
+  let state = initialState;
+  if (initState) {
+    const { categories, fromPrice, toPrice, fromYear, sort, toYear } =
+      initState;
+    state = {
+      categories: categories || initialState.categories,
+      fromPrice: fromPrice || initialState.fromPrice,
+      toPrice: toPrice || initialState.toPrice,
+      fromYear: fromYear || initialState.fromYear,
+      sort: sort || initialState.sort,
+      toYear: toYear || initialState.toYear,
+    };
+  }
+  return useReducer(reducer, state);
 };
 export default useFilterReducer;

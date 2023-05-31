@@ -3,6 +3,7 @@ export type Game = {
   gameImages: GameImages[];
   price: number;
   title: string;
+  publisher: Publisher;
 };
 export type Category = {
   name: string;
@@ -11,4 +12,8 @@ export type Category = {
 type GameImages = {
   id: number;
   url: string;
+};
+type Publisher = {
+  id: number;
+  name: string;
 };

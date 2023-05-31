@@ -8,10 +8,12 @@ import Dropdown from "../Dropdown/Dropdown";
 import MultiSelect from "../Inputs/MultiSelect/MultiSelect";
 type FilterProps = {
   onChange: (filterValues: FilterValues) => unknown;
+  initialState?: FilterValues;
 };
-export default function Filter({ onChange }: FilterProps) {
+export default function Filter({ onChange, initialState }: FilterProps) {
+  console.log(initialState);
   const { data } = useFilterValues();
-  const [state, dispatch] = useFilterReducer();
+  const [state, dispatch] = useFilterReducer(initialState);
   const categoryLabels = data && data.categories.map((value) => value.name);
   const categoryValues = data && data.categories.map((value) => `${value.id}`);
   const yearChangeHandler = useCallback(
@@ -41,6 +43,8 @@ export default function Filter({ onChange }: FilterProps) {
     },
     [dispatch]
   );
+  const sortChangeHandler = useCallback(() => {}, []);
+  const orderChangeHandler = useCallback(() => {}, []);
   useEffect(() => {
     onChange(state);
   }, [state, onChange]);
@@ -50,8 +54,10 @@ export default function Filter({ onChange }: FilterProps) {
         <li>
           <Dropdown label="Price">
             <RangeSlider
-              lower={data.filter.minPrice}
-              upper={data.filter.maxPrice}
+              minLower={data.filter.minPrice}
+              maxUpper={data.filter.maxPrice}
+              lower={initialState?.fromPrice || data.filter.minPrice}
+              upper={initialState?.toPrice || data.filter.maxPrice}
               onChange={priceChangeHandler}
             ></RangeSlider>
           </Dropdown>
@@ -59,8 +65,10 @@ export default function Filter({ onChange }: FilterProps) {
         <li>
           <Dropdown label="Release year">
             <RangeSlider
-              lower={data.filter.minYear}
-              upper={data.filter.maxYear}
+              minLower={data.filter.minYear}
+              maxUpper={data.filter.maxYear}
+              lower={initialState?.fromYear || data.filter.minYear}
+              upper={initialState?.toYear || data.filter.maxYear}
               onChange={yearChangeHandler}
             ></RangeSlider>
           </Dropdown>
@@ -72,6 +80,11 @@ export default function Filter({ onChange }: FilterProps) {
               values={categoryValues}
               changeHandler={categoryChangeHandler}
             />
+          </Dropdown>
+        </li>
+        <li>
+          <Dropdown label={"Categories"}>
+            <select></select>
           </Dropdown>
         </li>
       </ul>

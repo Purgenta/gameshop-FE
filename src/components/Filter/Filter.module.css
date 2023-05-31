@@ -1,6 +1,6 @@
 .filter-options {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 }
 .filter-options > li {
@@ -9,8 +9,5 @@
   border: 1px solid var(--secondary-highlight-color);
 }
 .filter {
-  border-right: 1px solid black;
-  position: sticky;
-  top: 0;
   padding: 0rem 0.4rem;
 }

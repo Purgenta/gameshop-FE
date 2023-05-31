@@ -37,10 +37,6 @@ ul {
 img {
   max-width: 100%;
 }
-button {
-  color: white;
-  border: none;
-}
 button:disabled {
   opacity: 0.6;
 }
@@ -77,4 +73,7 @@ input[type="number"]::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+main {
+  flex-grow: 1;
 }

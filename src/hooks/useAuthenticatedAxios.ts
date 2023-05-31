@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
-import { nanoid } from "@reduxjs/toolkit";
 const useAuthenticatedAxios = () => {
   const refreshToken = useRefreshToken();
   const { data: authentication } = useSession();
@@ -36,13 +35,8 @@ const useAuthenticatedAxios = () => {
             previousRequest.headers["Authorization"] = `Bearer ${accessToken}`;
             return authenticatedAxios(previousRequest);
           } catch (exception) {
-            if (authentication) {
-              authentication.user.accessToken = "";
-              authentication.user.role = "";
-            }
             dispatch(
               addNotification({
-                id: nanoid(5),
                 message: "Your session has expired",
                 notificationType: "ERROR",
               })
@@ -57,7 +51,7 @@ const useAuthenticatedAxios = () => {
       authenticatedAxios.interceptors.response.eject(responseInterceptor);
       authenticatedAxios.interceptors.request.eject(requestInterceptor);
     };
-  }, [authentication, refreshToken, navigate, dispatch]);
+  }, [authentication, refreshToken, dispatch, navigate]);
   return authenticatedAxios;
 };
 export default useAuthenticatedAxios;

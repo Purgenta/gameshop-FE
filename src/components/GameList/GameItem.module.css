@@ -3,6 +3,7 @@
   width: auto;
   aspect-ratio: 1 / 1.5;
   max-width: 350px;
+  border-radius: 0.5rem;
 }
 .img-wrapper {
   margin: 0rem auto;
@@ -25,7 +26,7 @@
 }
 .cart {
   border-radius: 50%;
-  background-color: #ffdf00;
+  background-color: #dadada;
   padding: 1rem;
   border: none;
 }

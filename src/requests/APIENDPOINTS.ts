@@ -14,6 +14,7 @@ const CART = {
   itemCount: "cart/itemCount",
   cartItems: "cart/cartItems",
   deleteCartItem: "cart/deleteCartItem",
+  setCartItem: "cart/setCartItem",
   addCartItem: "cart/addCartItem",
 };
 export { AUTHENDPOINTS, GAMEENDPOINTS, USERS, CART };

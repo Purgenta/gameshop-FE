@@ -1,5 +1,10 @@
 import NextAuth from "@/pages/api/auth/[...nextauth]";
 import { Role } from "./role";
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: Role;
+  }
+}
 declare module "next-auth" {
   interface Session {
     user: {

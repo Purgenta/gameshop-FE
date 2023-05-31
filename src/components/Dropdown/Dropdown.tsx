@@ -8,7 +8,7 @@ type DropdownProps = {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
 const Dropdown = ({ children, label }: DropdownProps) => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
   return (
     <div className={style["dropdown"]}>
       <button

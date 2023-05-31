@@ -15,41 +15,45 @@ type SearchProps = {
     toYear: number;
     fromYear: number;
     currentPage: number;
+    categories: [];
+    sort: [];
   };
 };
-const Search = ({
-  searchParams: { fromPrice, toPrice, fromYear, toYear, currentPage },
-}: SearchProps) => {
+const Search = ({ searchParams }: SearchProps) => {
   const router = useRouter();
+  const {
+    fromPrice,
+    toPrice,
+    fromYear,
+    toYear,
+    currentPage,
+    categories,
+    sort,
+  } = searchParams;
   const [filter, setFilter] = useState<{
-    filter: FilterValues;
+    filter: FilterValues | undefined;
     currentPage: number;
   }>({
     currentPage: currentPage | 1,
-    filter: {
-      categories: [],
-      fromPrice: fromPrice || 0,
-      toPrice: toPrice || 1000000,
-      fromYear: fromYear || 1950,
-      toYear: toYear || new Date().getFullYear(),
-    },
+    filter: undefined,
   });
   useEffect(() => {
     const timeOut = setTimeout(() => {
+      if (!filter.filter) return;
       const queryParams = {
-        ...filter.filter,
+        currentPage: filter.currentPage + "",
         toPrice: `${filter.filter.toPrice}`,
         fromPrice: `${filter.filter.fromPrice}`,
         fromYear: `${filter.filter.fromYear}`,
         toYear: `${filter.filter.toYear}`,
       };
-      const searchParams = new URLSearchParams({});
+      const searchParams = new URLSearchParams(queryParams);
       router.push(`/search?${searchParams}`);
-    }, 500);
+    }, 700);
     return () => {
       clearTimeout(timeOut);
     };
-  }, [filter]);
+  }, [filter, router]);
   const { data } = useFilteredGames({
     fromPrice,
     toPrice,
@@ -63,7 +67,7 @@ const Search = ({
   return (
     <main className={style["game-search"]}>
       <div className={style["toggle-filter__wrapper"]}>
-        <Filter onChange={onFilterChange}></Filter>
+        <Filter onChange={onFilterChange} initialState={searchParams}></Filter>
       </div>
       <section className={style["search-results"]}>
         <h2 className={style["section-title"]}>Search games</h2>
