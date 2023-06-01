@@ -1,19 +1,23 @@
 export type Game = {
   id: number;
   gameImages: GameImages[];
+  category: Category;
   price: number;
+  description: string;
   title: string;
   publisher: Publisher;
+  releaseYear: number;
 };
-export type Category = {
-  name: string;
-  id: number;
-};
-type GameImages = {
+export type GameImages = {
   id: number;
   url: string;
 };
-type Publisher = {
+export type Publisher = {
+  publisher_id: number;
+  name: string;
+};
+export type Category = {
   id: number;
   name: string;
+  description: string;
 };

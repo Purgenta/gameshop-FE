@@ -1,0 +1,11 @@
+.add-new__btn {
+  color: var(--main-button-text-color);
+  background-color: var(--main-button-color);
+  padding: 0.2rem 0.5rem;
+  max-width: 200px;
+}
+.dashboard {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}

@@ -4,11 +4,13 @@ const AUTHENDPOINTS = {
   register: "authentication/register",
 };
 const USERS = {
-  getAllUsers: "users/getAllUsers",
+  getOrderItems: "orders/getOrders",
+  placeOrder: "orders/checkout",
 };
 const GAMEENDPOINTS = {
   filter: "games/filterValues",
   filteredGames: "games/getGames",
+  getGameById: (game_id: number) => `games/game/${game_id}`,
 };
 const CART = {
   itemCount: "cart/itemCount",
@@ -17,4 +19,25 @@ const CART = {
   setCartItem: "cart/setCartItem",
   addCartItem: "cart/addCartItem",
 };
-export { AUTHENDPOINTS, GAMEENDPOINTS, USERS, CART };
+const PUBLISHERS = {
+  getPublishers: "publishers/getPublishers",
+};
+const CATEGORIES = {
+  getCategories: "categories/getAllCategories",
+};
+const ADMIN = {
+  dashBoardItems: "games/paged",
+  addGame: `games/addGame`,
+  deleteGame: (game_id: number) => `games/deleteGame/${game_id}`,
+  updateGame: (game_id: number) => `games/updateGame/${game_id}`,
+  deleteImage: (image_id: number) => `games/deleteImage/${image_id}`,
+};
+export {
+  AUTHENDPOINTS,
+  GAMEENDPOINTS,
+  USERS,
+  CART,
+  ADMIN,
+  PUBLISHERS,
+  CATEGORIES,
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import style from "./Pagination.module.css";
 import generateRange from "../../utility/generateRange";
@@ -15,6 +15,7 @@ const Pagination = ({ pageCount, currentPage, onChange }: PaginationProps) => {
     };
   };
   const goRef = useRef<HTMLInputElement>(null!);
+  const [gotoPage, setGotoPage] = useState(1);
   if (pageCount <= 5) {
     paginationButtons = generateRange(1, pageCount).map((value) => {
       return (
@@ -79,12 +80,21 @@ const Pagination = ({ pageCount, currentPage, onChange }: PaginationProps) => {
           <input
             max={pageCount}
             min={1}
-            maxLength={pageCount}
             type="number"
             id="page-goto"
             name="page-goto"
+            ref={goRef}
+            onChange={(event) => {
+              if (+event.target.value > pageCount || +event.target.value === 0)
+                return;
+              else setGotoPage(+event.target.value);
+            }}
           />
-          <button onClick={() => onChange(+goRef.current.value)}>{`>`}</button>
+          <button
+            onClick={() => {
+              onChange(gotoPage);
+            }}
+          >{`>`}</button>
         </div>
       </div>
     </nav>

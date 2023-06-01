@@ -1,6 +1,6 @@
 .games-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 250px));
   list-style-type: none;
   gap: 1.5rem;
   align-items: center;

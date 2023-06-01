@@ -6,11 +6,7 @@ const useDeleteCartItem = () => {
   const axios = useAuthenticatedAxios();
   const dispatch = useDispatch();
   const deleteItem = async (game_id: number) => {
-    await axios.delete(CART.deleteCartItem, {
-      data: {
-        game_id,
-      },
-    });
+    await axios.delete(`${CART.deleteCartItem}/${game_id}`);
     dispatch(
       addNotification({
         message: "Successfully deleted an item",

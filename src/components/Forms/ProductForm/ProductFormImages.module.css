@@ -1,0 +1,26 @@
+.picture {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.5rem 0rem;
+  align-items: center;
+}
+.input-group {
+  gap: 0.6rem;
+  display: flex;
+}
+.product-image__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.added-picture .input-group button {
+  color: var(--main-button-text-color);
+  background-color: var(--main-button-color);
+  padding: 0.2rem 0.6rem;
+}
+.input-group input {
+  border: 1px solid black;
+}
+.submit {
+  margin: 1rem 0rem;
+}

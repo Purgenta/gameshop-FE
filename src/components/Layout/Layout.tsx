@@ -55,7 +55,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "Profile", icon: FiCompass, href: "/profile" },
 ];
 const AdminRoutes: Array<LinkItemProps> = [
-  { name: "Dashboard", icon: FiDatabase, href: "/admin/dashboard" },
+  { name: "Dashboard", icon: FiDatabase, href: "/admin/dashboard/1" },
 ];
 export default function SidebarWithHeader({
   children,
@@ -234,6 +234,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           size="lg"
           variant="ghost"
           aria-label="open menu"
+          onClick={() => navigate.push("/cart")}
           icon={<FiShoppingCart />}
         >
           <span className={style["item-count"]}>{"Ogroman broj"}</span>

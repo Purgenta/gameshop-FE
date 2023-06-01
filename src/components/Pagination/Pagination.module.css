@@ -32,7 +32,7 @@
   margin-top: 2rem;
 }
 .go-to input {
-  background-color: var(--main-input-field-color);
+  background-color: white;
   border-radius: 5px;
   font-size: 1.4rem;
   padding: 0.1rem 0.4rem;
