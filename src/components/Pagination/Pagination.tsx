@@ -64,13 +64,13 @@ const Pagination = ({ pageCount, currentPage, onChange }: PaginationProps) => {
       <ul className={style["pagination"]}>
         {currentPage != 1 && (
           <li className="navigation-control">
-            <button onClick={() => onChange(currentPage - 1)}>{`<`}</button>
+            <button onClick={() => onChange(+currentPage - 1)}>{`<`}</button>
           </li>
         )}
         {paginationButtons}
         {currentPage != pageCount && (
           <li className="navigation-control">
-            <button onClick={() => onChange(currentPage + 1)}>{`>`}</button>
+            <button onClick={() => onChange(+currentPage + 1)}>{`>`}</button>
           </li>
         )}
       </ul>

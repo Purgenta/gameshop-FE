@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import ProductFormHolder from "../Forms/ProductForm/ProductFormHolder";
-import { ReactNode } from "react";
 type EditProductProps = {
   game?: Game;
   onSubmit: (values: ProductValues) => unknown;

@@ -20,15 +20,30 @@ import useDeleteCartItem from "@/requests/cart/hooks/useDeleteCartItem";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
 import useSetCartItem from "@/requests/cart/hooks/useSetCartItem";
+import useCheckout from "@/requests/cart/hooks/useCheckout";
 const Cart = () => {
   const [items, setItems] = useState<CartItemResponse[] | undefined>(undefined);
-  const { data, isLoading } = useGetCartItems();
+  const { data, isLoading, mutate } = useGetCartItems();
   useEffect(() => {
     if (data) setItems(data);
   }, [data, setItems]);
   const deleteItem = useDeleteCartItem();
   const setCartItem = useSetCartItem();
   const dispatch = useDispatch();
+  const checkout = useCheckout();
+  const onCheckout = async () => {
+    try {
+      await checkout();
+      mutate();
+    } catch (error) {
+      dispatch(
+        addNotification({
+          message: "Error while ordering",
+          notificationType: "ERROR",
+        })
+      );
+    }
+  };
   return (
     <main>
       <Box
@@ -118,13 +133,14 @@ const Cart = () => {
           {items && items.length && (
             <Flex direction="column" align="center" flex="1">
               <CartOrderSummary
+                onCheckout={onCheckout}
                 price={items.reduce((accum, previous) => {
                   return accum + previous.game.price * previous.quantity;
                 }, 0)}
               />
               <HStack mt="6" fontWeight="semibold">
                 <p>or</p>
-                <Link color={mode("blue.500", "blue.200")}>
+                <Link href="/search" color={mode("blue.500", "blue.200")}>
                   Continue shopping
                 </Link>
               </HStack>

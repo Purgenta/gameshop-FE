@@ -4,8 +4,13 @@ export type FilterValues = {
   toPrice: number;
   fromYear: number;
   toYear: number;
-  categories: string[];
-  sort: string[];
+  categories: number[];
+  publishers: number[];
+  search: string;
+  sort: {
+    orderBy: string;
+    sortDir: string;
+  };
 };
 const initialState: FilterValues = {
   fromPrice: 1,
@@ -13,7 +18,12 @@ const initialState: FilterValues = {
   fromYear: 1950,
   toYear: new Date().getFullYear(),
   categories: [],
-  sort: ["price", "desc"],
+  publishers: [],
+  search: "",
+  sort: {
+    orderBy: "price",
+    sortDir: "desc",
+  },
 };
 type ACTIONTYPE =
   | {
@@ -23,8 +33,12 @@ type ACTIONTYPE =
         toPrice: number;
       };
     }
-  | { type: "setCategories"; payload: string[] }
-  | { type: "setYear"; payload: { fromYear: number; toYear: number } };
+  | { type: "setCategories"; payload: number[] }
+  | { type: "setYear"; payload: { fromYear: number; toYear: number } }
+  | { type: "setPublishers"; payload: number[] }
+  | { type: "setSearch"; payload: string }
+  | { type: "setSort"; payload: string }
+  | { type: "setOrderBy"; payload: string };
 function reducer(
   state: typeof initialState,
   action: ACTIONTYPE
@@ -40,35 +54,32 @@ function reducer(
       } else newState.categories = [];
       return newState;
     }
+    case "setPublishers": {
+      const newState = { ...state };
+      if (action.payload.length) {
+        newState.publishers = action.payload;
+      } else newState.publishers = [];
+      return newState;
+    }
     case "setYear": {
       return { ...state, ...action.payload };
+    }
+    case "setSearch": {
+      return { ...state, search: action.payload };
+    }
+    case "setOrderBy": {
+      const sortDir = state.sort.sortDir;
+      return { ...state, sort: { sortDir, orderBy: action.payload } };
+    }
+    case "setSort": {
+      const orderBy = state.sort.orderBy;
+      return { ...state, sort: { sortDir: action.payload, orderBy } };
     }
     default:
       throw new Error();
   }
 }
-type OptionalInit = {
-  fromPrice?: number;
-  toPrice?: number;
-  fromYear?: number;
-  toYear?: number;
-  categories?: string[];
-  sort?: string[];
-};
-const useFilterReducer = (initState: OptionalInit | undefined) => {
-  let state = initialState;
-  if (initState) {
-    const { categories, fromPrice, toPrice, fromYear, sort, toYear } =
-      initState;
-    state = {
-      categories: categories || initialState.categories,
-      fromPrice: fromPrice || initialState.fromPrice,
-      toPrice: toPrice || initialState.toPrice,
-      fromYear: fromYear || initialState.fromYear,
-      sort: sort || initialState.sort,
-      toYear: toYear || initialState.toYear,
-    };
-  }
-  return useReducer(reducer, state);
+const useFilterReducer = () => {
+  return useReducer(reducer, initialState);
 };
 export default useFilterReducer;

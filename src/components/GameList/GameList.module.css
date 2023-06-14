@@ -9,6 +9,7 @@
 .item {
   border-radius: 0.5rem;
   background-color: var(--main-highlight-color);
-  padding: 0.5rem;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }

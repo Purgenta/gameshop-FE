@@ -7,11 +7,12 @@ import { setCount } from "@/redux/cartSlice/cartSlice";
 const useAddCartItem = (game_id: number) => {
   const dispatch = useDispatch();
   const axios = useAuthenticatedAxios();
-  const addCartItem = async () => {
+  const addCartItem = async (quantity: number) => {
     try {
       const response = (
         await axios.post(CART.addCartItem, {
           game_id: game_id,
+          quantity,
         })
       ).data as CartItemCount;
       dispatch(setCount(response.count));

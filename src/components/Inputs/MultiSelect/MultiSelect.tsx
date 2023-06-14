@@ -1,36 +1,44 @@
 import React, { useEffect } from "react";
 import style from "./MultiSelect.module.css";
 import { useState } from "react";
+type Options = {
+  value: string | number;
+  label: string;
+  isChecked: boolean;
+};
 interface MultiSelectProps {
-  options: string[];
-  values?: string[];
+  options: Options[];
   changeHandler: (selectedOptions: string[]) => unknown;
 }
-function MultiSelect({ options, changeHandler, values }: MultiSelectProps) {
-  const [selected, setSelected] = useState(new Set<string>());
+function MultiSelect({ options, changeHandler }: MultiSelectProps) {
+  const [selected, setSelected] = useState<Set<string>>(
+    new Set<string>(options.map((option) => "" + option.value))
+  );
   useEffect(() => {
     changeHandler([...selected]);
-  }, [selected, changeHandler]);
+  }, [selected]);
   return (
     <>
-      {options.map((option, index) => (
-        <div key={index} className={style["input-group"]}>
-          <input
-            onChange={(event) => {
-              const value = event.target.value;
-              setSelected((prev) => {
-                if (prev.has(value)) {
-                  prev.delete(value);
-                } else prev.add(value);
-                return new Set<string>([...prev]);
-              });
-            }}
-            type="checkbox"
-            value={values ? values[index] : index}
-          />
-          <label>{option}</label>
-        </div>
-      ))}
+      {options.map((option, index) => {
+        return (
+          <div key={index} className={style["input-group"]}>
+            <input
+              onChange={(event) => {
+                setSelected((prev) => {
+                  if (prev.has(event.target.value)) {
+                    prev.delete(event.target.value);
+                  } else prev.add(event.target.value);
+                  return new Set<string>([...prev]);
+                });
+              }}
+              checked={selected.has(option.value + "")}
+              type="checkbox"
+              value={option.value}
+            />
+            <label>{option.label}</label>
+          </div>
+        );
+      })}
     </>
   );
 }

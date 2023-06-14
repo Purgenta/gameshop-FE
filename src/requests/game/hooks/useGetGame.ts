@@ -4,7 +4,7 @@ import { GAMEENDPOINTS } from "@/requests/APIENDPOINTS";
 import { Game } from "@/types/game";
 const useGetGame = (game_id: number) => {
   const getGame = async () => {
-    (await axios.get(GAMEENDPOINTS.getGameById(game_id))).data as Game;
+    return (await axios.get(GAMEENDPOINTS.getGameById(game_id))).data as Game;
   };
   const { data, error, isLoading } = useSwr(
     () => GAMEENDPOINTS.getGameById(game_id),

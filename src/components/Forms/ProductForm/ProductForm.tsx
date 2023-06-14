@@ -46,11 +46,12 @@ const ProductForm = ({ game, onSubmit }: ProductFormProps) => {
     },
   });
   const { data: categories } = useGetCategories();
-  console.log(formik.values);
   const {
     errors,
-    values: { price, title },
+    touched,
+    values: { price, title, publisher_id, category_id },
   } = formik;
+  console.log(publisher_id, category_id);
   const { data } = useGetPublishers();
   return (
     <form className={style["product-form"]} onSubmit={formik.handleSubmit}>
@@ -93,13 +94,14 @@ const ProductForm = ({ game, onSubmit }: ProductFormProps) => {
           value={formik.values.description}
         ></textarea>
       </div>
+      {errors.description && touched.description && <p>{errors.description}</p>}
       <div className={`${style["input-group"]} ${style["select-group"]}`}>
         <label htmlFor="publisher_id">Publisher:</label>
         <Select
           placeholder="Select a publisher"
           variant={"flushed"}
           name="publisher_id"
-          defaultValue={game?.publisher.publisher_id}
+          defaultValue={game?.publisher.publisher_id || 0}
           onChange={formik.handleChange}
         >
           {data &&

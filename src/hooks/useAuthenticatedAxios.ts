@@ -7,13 +7,16 @@ import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
 const useAuthenticatedAxios = () => {
   const refreshToken = useRefreshToken();
-  const { data: authentication } = useSession();
+  const { data: authentication, update } = useSession();
   const dispatch = useDispatch();
   const navigate = useRouter();
   useEffect(() => {
     const requestInterceptor = authenticatedAxios.interceptors.request.use(
       (config) => {
-        if (!config?.headers["Authorization"]) {
+        if (
+          authentication?.user.accessToken &&
+          !config?.headers["Authorization"]
+        ) {
           config.headers[
             "Authorization"
           ] = `Bearer ${authentication?.user.accessToken}`;
@@ -41,7 +44,17 @@ const useAuthenticatedAxios = () => {
                 notificationType: "ERROR",
               })
             );
-            navigate.push("/login");
+            if (authentication) {
+              await update({
+                ...authentication,
+                user: {
+                  ...authentication.user,
+                  accessToken: "",
+                  email: "",
+                  role: "",
+                },
+              });
+            }
           }
         }
         return Promise.reject(error);
@@ -51,7 +64,7 @@ const useAuthenticatedAxios = () => {
       authenticatedAxios.interceptors.response.eject(responseInterceptor);
       authenticatedAxios.interceptors.request.eject(requestInterceptor);
     };
-  }, [authentication, refreshToken, dispatch, navigate]);
+  }, [authentication, refreshToken, dispatch, navigate, update]);
   return authenticatedAxios;
 };
 export default useAuthenticatedAxios;

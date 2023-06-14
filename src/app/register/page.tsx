@@ -7,27 +7,22 @@ import style from "./page.module.css";
 import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
+import { registerRequest } from "@/requests/user/userRequests";
 const Page = () => {
   const dispatch = useDispatch();
   const sendRegisterRequest = async (values: FormValues) => {
     try {
-      await signIn("credentials", {
-        username: values.email,
-        password: values.password,
-        redirect: true,
-        callbackUrl: "/profile",
-        error: "",
-      });
+      await registerRequest(values);
       dispatch(
         addNotification({
-          message: "Successfull login",
+          message: "User successfully created",
           notificationType: "SUCCESS",
         })
       );
     } catch (error) {
       dispatch(
         addNotification({
-          message: "Issue logging in",
+          message: "Error while creating the user",
           notificationType: "ERROR",
         })
       );

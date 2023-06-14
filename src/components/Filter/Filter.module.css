@@ -1,13 +1,45 @@
 .filter-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
+  background-color: var(--main-highlight-color);
+}
+.filter-options > li:first-child {
+  padding: 0.4rem;
 }
 .filter-options > li {
-  padding: 0.2rem;
+  padding: 0.4rem 0.2rem;
   border-radius: 0.5rem;
   border: 1px solid var(--secondary-highlight-color);
 }
 .filter {
-  padding: 0rem 0.4rem;
+  display: none;
+  padding: 0.6rem;
+  background-color: white;
+}
+div.active-filter {
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 500px;
+  transform: translate(-50%, -50%);
+}
+.filter-close__btn {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+.search-name {
+  border: 1px solid black;
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  font-size: 1.1rem;
+}
+.select-option {
+  border: none;
+  width: 100%;
+  font-size: 1.2rem;
 }

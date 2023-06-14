@@ -1,14 +1,14 @@
-import { Category, Game } from "@/types/game";
+import { Category, Game, Publisher } from "@/types/game";
 import { GAMEENDPOINTS } from "../APIENDPOINTS";
 import axios from "../axios/axios";
 interface QueryOptions {
   page: number;
 }
 export interface GameFilter extends QueryOptions {
-  fromPrice: number;
-  toPrice: number;
-  fromYear: number;
-  toYear: number;
+  fromPrice?: number;
+  toPrice?: number;
+  fromYear?: number;
+  toYear?: number;
 }
 type FilterValues = {
   filter: {
@@ -17,6 +17,7 @@ type FilterValues = {
     minYear: number;
     maxYear: number;
   };
+  publishers: Publisher[];
   categories: Category[];
 };
 export const filterValues = async () => {
@@ -25,8 +26,8 @@ export const filterValues = async () => {
 };
 export const getFilteredGames = async (filterOptions: GameFilter) => {
   const response = (
-    await axios.get(GAMEENDPOINTS.filteredGames, {
-      params: filterOptions,
+    await axios.post(GAMEENDPOINTS.filteredGames, {
+      ...filterOptions,
     })
   ).data;
   return response as {

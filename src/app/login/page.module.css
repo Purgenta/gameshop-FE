@@ -1,6 +1,6 @@
 .main {
-  display: flex;
+  display: grid;
   flex-grow: 1;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
+  padding-top: 4rem;
 }

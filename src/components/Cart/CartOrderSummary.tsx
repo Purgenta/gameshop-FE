@@ -30,8 +30,9 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 };
 type CartOrderProps = {
   price: number;
+  onCheckout: () => unknown;
 };
-export const CartOrderSummary = ({ price }: CartOrderProps) => {
+export const CartOrderSummary = ({ price, onCheckout }: CartOrderProps) => {
   return (
     <Stack
       spacing="8"
@@ -58,6 +59,7 @@ export const CartOrderSummary = ({ price }: CartOrderProps) => {
         colorScheme="blue"
         size="lg"
         fontSize="md"
+        onClick={onCheckout}
         rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
       >
         Checkout

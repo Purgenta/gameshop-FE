@@ -8,15 +8,15 @@ const validate = (values: FormValues) => {
     release_year: "",
     description: "",
   };
-  if (values.category_id === undefined || values.category_id === 0) {
+  if (!values.category_id || values.category_id === 0) {
     errors.category_id = "You must choose a category";
   }
-  if (values.publisher_id === undefined || values.publisher_id === 0) {
-    errors.publisher_id = "Select a proper publisher";
+  if (!values.publisher_id || values.publisher_id === 0) {
+    errors.publisher_id = "You must choose a publisher";
   }
-  if (values.description.length < 15 || values.description.length > 500) {
+  if (values.description.length < 15 || values.description.length > 1000) {
     errors.description =
-      "Description must be between 15 and 100 characters longs";
+      "Description must be between 15 and 1000 characters longs";
   }
   if (
     !values.release_year ||

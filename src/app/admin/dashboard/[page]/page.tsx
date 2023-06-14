@@ -70,8 +70,9 @@ const DashBoard = ({ params: { page } }: DashBoardSearchProps) => {
                         {
                           <EditProduct
                             game={game}
-                            onSubmit={(values) => {
-                              updateGame(values, game.id);
+                            onSubmit={async (values) => {
+                              await updateGame(values, game.id);
+                              mutate();
                             }}
                           />
                         }

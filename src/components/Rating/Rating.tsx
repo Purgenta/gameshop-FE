@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from "react";
 type RatingProps = {
   onChange: (rating: number) => unknown;
+  initialRating?: number;
 };
 import Star from "./Star/Star";
 import { useState } from "react";
 import style from "./Rating.module.css";
-const Rating = ({ onChange }: RatingProps) => {
+const Rating = ({ onChange, initialRating }: RatingProps) => {
   const starsRefs = useRef(
     Array.from({ length: 5 }, () => useRef<SVGSVGElement>(null!))
   );
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(initialRating || 0);
   useEffect(() => {
     onChange(rating);
   }, [rating]);

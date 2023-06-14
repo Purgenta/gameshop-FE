@@ -11,7 +11,6 @@ import { PriceTag } from "./PriceTag";
 import { CartProductMeta } from "./CartProductMeta";
 import { StaticImageData } from "next/image";
 import style from "./CartItem.module.css";
-import useDeleteCartItem from "@/requests/cart/hooks/useDeleteCartItem";
 type CartItemProps = {
   id: number;
   name: string;
@@ -26,6 +25,7 @@ type CartItemProps = {
 };
 
 const QuantitySelect = (props: SelectProps) => {
+  const values = new Array<number>(100).fill(1);
   return (
     <Select
       maxW="64px"
@@ -33,10 +33,13 @@ const QuantitySelect = (props: SelectProps) => {
       focusBorderColor={useColorModeValue("blue.500", "blue.200")}
       {...props}
     >
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
+      {values.map((val, index) => {
+        return (
+          <option value={index + 1} key={index + 1}>
+            {index + 1}
+          </option>
+        );
+      })}
     </Select>
   );
 };

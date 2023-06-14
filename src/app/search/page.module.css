@@ -12,6 +12,9 @@
 }
 .toggle-filter__wrapper {
   display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
   width: 100%;
   align-items: center;
 }

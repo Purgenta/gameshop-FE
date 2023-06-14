@@ -25,6 +25,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Button,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -83,7 +84,7 @@ export default function SidebarWithHeader({
         </DrawerContent>
       </Drawer>
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box position={"relative"} ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
     </Box>
@@ -175,7 +176,7 @@ interface MobileProps extends FlexProps {
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const dispatch = useDispatch();
   const navigate = useRouter();
-  const { itemCount, isLoaded } = useSelector(cartSelector);
+  const { isLoaded, itemCount } = useSelector(cartSelector);
   const { data } = useSession();
   const isAuth = data?.user.accessToken ? true : false;
   const getCount = useCartItemCount();
@@ -229,16 +230,17 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
+        <Button
           className={style["shoping-cart__btn"]}
           size="lg"
           variant="ghost"
           aria-label="open menu"
+          position={"relative"}
           onClick={() => navigate.push("/cart")}
-          icon={<FiShoppingCart />}
         >
-          <span className={style["item-count"]}>{"Ogroman broj"}</span>
-        </IconButton>
+          <FiShoppingCart />
+          <span className={style["item-count"]}>{itemCount}</span>
+        </Button>
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton

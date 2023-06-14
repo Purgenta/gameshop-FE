@@ -1,5 +1,7 @@
 .item-count {
   position: absolute;
+  top: 0;
+  right: 10%;
 }
 
 .shoping-cart__btn {

@@ -8,7 +8,6 @@ const useFilterValues = () => {
       return filterValues();
     },
     {
-      refreshInterval: 90000,
       revalidateOnFocus: false,
       revalidateOn: false,
       revalidateOnReconnect: false,

@@ -19,8 +19,9 @@
 .pagination button {
   font-size: 1.4rem;
   color: inherit;
-  padding: 0.6rem;
-  background: var(--main-button-background);
+  padding: 0.2rem 0.4rem;
+  background-color: var(--main-button-color);
+  color: var(--main-button-text-color);
 }
 .active {
   font-weight: bolder;

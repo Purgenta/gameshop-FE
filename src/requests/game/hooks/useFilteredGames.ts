@@ -2,7 +2,7 @@ import { GameFilter } from "../gameRequests";
 import useSWR from "swr";
 import { GAMEENDPOINTS } from "@/requests/APIENDPOINTS";
 import { getFilteredGames } from "../gameRequests";
-const useFilteredGames = (filter: GameFilter) => {
+const useFilteredGames = (filter: any) => {
   const { data, error, isLoading } = useSWR(
     () => [GAMEENDPOINTS.filteredGames, filter],
     () => {
