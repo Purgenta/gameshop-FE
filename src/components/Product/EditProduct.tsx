@@ -8,13 +8,16 @@ import {
   ModalHeader,
   ModalBody,
   ModalContent,
+  Flex,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import ProductFormHolder from "../Forms/ProductForm/ProductFormHolder";
+import { ReactNode } from "react";
 type EditProductProps = {
   game?: Game;
   onSubmit: (values: ProductValues) => unknown;
-  children?: any;
+  children?: ReactNode;
+  type: "add product" | "edit product";
 };
 export type ProductValues = {
   title: string;
@@ -25,7 +28,7 @@ export type ProductValues = {
   category_id: number;
   release_year: number;
 };
-const EditProduct = ({ game, onSubmit }: EditProductProps) => {
+const EditProduct = ({ game, onSubmit, children, type }: EditProductProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <>
@@ -45,7 +48,20 @@ const EditProduct = ({ game, onSubmit }: EditProductProps) => {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <FontAwesomeIcon onClick={onOpen} icon={faPen}></FontAwesomeIcon>
+      {type === "add product" && (
+        <Flex
+          gap={"0.4rem"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          onClick={onOpen}
+        >
+          {children}
+          <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
+        </Flex>
+      )}
+      {type === "edit product" && (
+        <FontAwesomeIcon onClick={onOpen} icon={faPen}></FontAwesomeIcon>
+      )}
     </>
   );
 };

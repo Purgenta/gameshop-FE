@@ -3,16 +3,7 @@ import RangeSlider from "../Inputs/RangeSlider/RangeSlider";
 import style from "./Filter.module.css";
 import { FilterValues } from "./filterReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  Modal,
-  ModalOverlay,
-  ModalCloseButton,
-  ModalHeader,
-  ModalBody,
-  ModalContent,
-  Heading,
-} from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import useFilterValues from "@/requests/game/hooks/useFilterValues";
 import useFilterReducer from "./filterReducer";
 import Dropdown from "../Dropdown/Dropdown";

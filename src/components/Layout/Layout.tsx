@@ -3,6 +3,7 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { cartSelector } from "@/redux/cartSlice/cartSlice";
 import style from "./Layout.module.css";
+import Image from "next/image";
 import {
   IconButton,
   Avatar,
@@ -45,6 +46,7 @@ import { setCount } from "@/redux/cartSlice/cartSlice";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
 import { useRouter } from "next/navigation";
 import { icon } from "@fortawesome/fontawesome-svg-core";
+import Footer from "../Footer/Footer";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -109,9 +111,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Image
+          src={"https://www.g2a.com/static/assets/images/logo_g2a_white.svg"}
+          width={75}
+          height={75}
+          alt="logo"
+        ></Image>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -220,14 +225,14 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
 
-      <Text
-        display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Logo
-      </Text>
+      <Box display={{ base: "flex", md: "none" }}>
+        <Image
+          src={"https://www.g2a.com/static/assets/images/logo_g2a_white.svg"}
+          width={75}
+          height={75}
+          alt="logo"
+        ></Image>
+      </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <Button
@@ -275,7 +280,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
+              <MenuItem onClick={() => navigate.push("/profile")}>
+                Profile
+              </MenuItem>
               <MenuDivider />
               {isAuth ? (
                 <MenuItem onClick={() => signOut()}>Sign out</MenuItem>

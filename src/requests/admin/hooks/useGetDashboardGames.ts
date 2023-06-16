@@ -15,6 +15,7 @@ const useGetDashboardGames = (page: number) => {
     () => `${ADMIN.dashBoardItems}/${page}`,
     () => getGames(page),
     {
+      refreshInterval: 2500,
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,

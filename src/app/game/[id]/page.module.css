@@ -129,6 +129,11 @@ section.product-info {
 .similiar-products__wrapper > h3 {
   margin-bottom: 1rem;
 }
+.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 @media screen and (max-width: 1000px) {
   .reviews-similiar__products {
     grid-template-columns: 1fr;

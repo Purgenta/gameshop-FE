@@ -5,7 +5,13 @@ import LoginForm, { FormValues } from "@/components/Forms/LoginForm/LoginForm";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/redux/notificationSlice/notificationSlice";
 import { signIn } from "next-auth/react";
-const Page = () => {
+import { Text } from "@chakra-ui/react";
+type CallbackParams = {
+  searchParams: {
+    error: string;
+  };
+};
+const Page = ({ searchParams: { error } }: CallbackParams) => {
   const dispatch = useDispatch();
   const sendLoginRequest = async (values: FormValues) => {
     try {
@@ -16,12 +22,6 @@ const Page = () => {
         callbackUrl: "/profile",
         error: "",
       });
-      dispatch(
-        addNotification({
-          message: "Successfull login",
-          notificationType: "SUCCESS",
-        })
-      );
     } catch (error) {
       dispatch(
         addNotification({
@@ -33,6 +33,12 @@ const Page = () => {
   };
   return (
     <main className={style.main}>
+      {error && (
+        <Text
+          marginBottom={"10"}
+          color={"red.500"}
+        >{`Error during login`}</Text>
+      )}
       {<LoginForm submitHandler={sendLoginRequest} />}
     </main>
   );

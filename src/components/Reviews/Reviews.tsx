@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import style from "./Reviews.module.css";
 import { UserReview } from "@/types/review";
 import Review from "./Review";
-import ReviewForm, { ReviewFormValues } from "../Forms/ReviewForm/ReviewForm";
+import ReviewForm from "../Forms/ReviewForm/ReviewForm";
 import { useDispatch } from "react-redux";
 import useAddReview from "@/requests/reviews/useAddReview";
 import useGetGameReviews from "@/requests/reviews/useGetGameReviews";
 import useCheckReviewEligibility from "@/requests/reviews/useCheckReviewEligibility";
-import { addNotification } from "@/redux/notificationSlice/notificationSlice";
-import { REVIEWS } from "@/requests/APIENDPOINTS";
-import { mutate } from "swr";
+import { Heading } from "@chakra-ui/react";
 type ReviewsProps = {
   product_id: number;
   className?: string;
@@ -72,7 +70,9 @@ const Reviews = ({ product_id, className }: ReviewsProps) => {
       {productReviews.length ? (
         <ul className={className || style["reviews"]}>{productReviews}</ul>
       ) : (
-        <h3>No reviews yet...</h3>
+        <Heading textAlign={"center"} size="md">
+          No reviews yet
+        </Heading>
       )}
       {data && page < data?.pageCount && (
         <button

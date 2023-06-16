@@ -41,6 +41,9 @@ const ProductFormImages = ({
                   icon={faX}
                   onClick={() => {
                     deleteImage(id);
+                    setExistingImages((prev) =>
+                      prev.filter((image) => image.id !== id)
+                    );
                   }}
                 ></FontAwesomeIcon>
               </li>
@@ -68,6 +71,7 @@ const ProductFormImages = ({
         <input
           type="text"
           name="text"
+          value={url}
           onChange={(event) => setUrl(event.target.value)}
         ></input>
         <button

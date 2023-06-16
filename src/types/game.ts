@@ -4,6 +4,7 @@ export type Game = {
   category: Category;
   price: number;
   description: string;
+  avgRating: null | number;
   title: string;
   publisher: Publisher;
   releaseYear: number;

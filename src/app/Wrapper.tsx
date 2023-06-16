@@ -5,7 +5,7 @@ type WrapperProps = {
   children: ReactNode;
 };
 const Wrapper = ({ children }: WrapperProps) => {
-  const session = useSession({ required: false });
+  const session = useSession();
   return <>{session.status === "loading" || children}</>;
 };
 

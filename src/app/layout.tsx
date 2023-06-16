@@ -1,6 +1,7 @@
 "use client";
 import ContextProvider from "@/redux/ContextProvider/ContextProvider";
 import "./globals.css";
+import { Box } from "@chakra-ui/react";
 import Footer from "@/components/Footer/Footer";
 import Notifications from "@/components/Notifications/Notifications";
 import Provider from "./Provider";
@@ -30,9 +31,11 @@ export default function RootLayout({
                     <Notifications />
                     {children}
                   </SidebarWithHeader>
+                  <Box position={"relative"} ml={{ base: 0, md: 60 }} p="4">
+                    <Footer></Footer>
+                  </Box>
                 </SWRConfig>
               </ChakraProvider>
-              <Footer />
             </Wrapper>
           </Provider>
         </ContextProvider>

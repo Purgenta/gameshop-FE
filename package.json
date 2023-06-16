@@ -33,10 +33,12 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
+    "react-slick": "^0.29.0",
     "swr": "^2.1.5",
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/cookies": "^0.7.7"
+    "@types/cookies": "^0.7.7",
+    "@types/react-slick": "^0.23.10"
   }
 }

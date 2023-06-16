@@ -85,7 +85,7 @@ const Pagination = ({ pageCount, currentPage, onChange }: PaginationProps) => {
             name="page-goto"
             ref={goRef}
             onChange={(event) => {
-              if (+event.target.value > pageCount || +event.target.value === 0)
+              if (+event.target.value > pageCount || +event.target.value <= 0)
                 return;
               else setGotoPage(+event.target.value);
             }}

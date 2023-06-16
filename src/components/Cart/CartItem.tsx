@@ -28,7 +28,7 @@ const QuantitySelect = (props: SelectProps) => {
   const values = new Array<number>(100).fill(1);
   return (
     <Select
-      maxW="64px"
+      maxW="84px"
       aria-label="Select quantity"
       focusBorderColor={useColorModeValue("blue.500", "blue.200")}
       {...props}

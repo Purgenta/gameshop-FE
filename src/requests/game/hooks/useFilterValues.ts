@@ -1,9 +1,9 @@
 import { filterValues } from "../gameRequests";
 import useSWR from "swr";
-import { GAMEENDPOINTS } from "@/requests/APIENDPOINTS";
+import { GAME } from "@/requests/APIENDPOINTS";
 const useFilterValues = () => {
   const { data, error, isLoading } = useSWR(
-    () => GAMEENDPOINTS.filter,
+    () => GAME.filter,
     () => {
       return filterValues();
     },

@@ -39,13 +39,13 @@ const DashBoard = ({ params: { page } }: DashBoardSearchProps) => {
       {data && (
         <>
           <button className={style["add-new__btn"]}>
-            Add new game
             {
               <EditProduct
+                type="add product"
                 onSubmit={(values) => {
                   addGame(values);
                 }}
-              />
+              >{`Add new product`}</EditProduct>
             }
           </button>
           <TableContainer textAlign={"center"}>
@@ -69,6 +69,7 @@ const DashBoard = ({ params: { page } }: DashBoardSearchProps) => {
                       <Td>
                         {
                           <EditProduct
+                            type="edit product"
                             game={game}
                             onSubmit={async (values) => {
                               await updateGame(values, game.id);

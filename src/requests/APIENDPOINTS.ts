@@ -7,9 +7,10 @@ const USERS = {
   getOrderItems: "orders/getOrders",
   placeOrder: "orders/checkout",
 };
-const GAMEENDPOINTS = {
+const GAME = {
   filter: "games/filterValues",
   filteredGames: "games/getGames",
+  featuredGames: "games/featuredGames",
   getGameById: (game_id: number) => `games/game/${game_id}`,
 };
 const REVIEWS = {
@@ -46,10 +47,11 @@ const ADMIN = {
 };
 const USER = {
   profile: "user/profile",
+  stats: "user/stats",
 };
 export {
   AUTHENDPOINTS,
-  GAMEENDPOINTS,
+  GAME,
   USERS,
   CART,
   ADMIN,

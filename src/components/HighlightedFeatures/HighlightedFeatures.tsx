@@ -3,7 +3,7 @@ import style from "./HighlightedFeatures.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faHouse, faStar } from "@fortawesome/free-solid-svg-icons";
 type HighlightedFeaturesProps = {
-  avg_rating: number;
+  avg_rating: number | null;
   publishing_year: number;
   publisher: string;
 };
@@ -30,7 +30,7 @@ const HighlightedFeatures = ({
           size={"2xl"}
           icon={faStar}
         />
-        {avg_rating}
+        {avg_rating || "No rating yet"}
       </li>
       <li>
         Publisher name
